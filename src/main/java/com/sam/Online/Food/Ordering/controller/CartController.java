@@ -3,10 +3,12 @@ package com.sam.Online.Food.Ordering.controller;
 
 import com.sam.Online.Food.Ordering.model.Cart;
 import com.sam.Online.Food.Ordering.model.CartItem;
+import com.sam.Online.Food.Ordering.model.User;
 import com.sam.Online.Food.Ordering.request.AddCartItemRequest;
 import com.sam.Online.Food.Ordering.request.UpdateCartItemRequest;
 import com.sam.Online.Food.Ordering.service.CartService;
 import com.sam.Online.Food.Ordering.service.CartServiceImp;
+import com.sam.Online.Food.Ordering.service.UserService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,9 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private UserService userService;
 
 
 
@@ -53,17 +58,19 @@ public class CartController {
     @PutMapping("/cart/clear")
     public ResponseEntity<Cart> clearCart(
             @RequestHeader("Authorization") String jwt)throws Exception{
-        Cart cart = cartService.clearCart(jwt);
+        User user=userService.findUserByJwtToken(jwt);
+        Cart cart = cartService.clearCart(user.getId());
         return new ResponseEntity<>(cart, HttpStatus.OK);
     }
 
 
-//    @GetMapping("/cart")
-//    public ResponseEntity<Cart> findUserCart(
-//            @RequestHeader("Authorization") String jwt)throws Exception{
-//        Cart cart = cartService.findCartByUserId(jwt);
-//        return new ResponseEntity<>(cart, HttpStatus.OK);
-//    }
+    @GetMapping("/cart")
+    public ResponseEntity<Cart> findUserCart(
+            @RequestHeader("Authorization") String jwt)throws Exception{
+        User user=userService.findUserByJwtToken(jwt);
+        Cart cart = cartService.findCartByUserId(user.getId());
+        return new ResponseEntity<>(cart, HttpStatus.OK);
+    }
 
 
 
