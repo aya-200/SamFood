@@ -3,6 +3,8 @@ package com.sam.Online.Food.Ordering.service;
 import com.sam.Online.Food.Ordering.model.Cart;
 import com.sam.Online.Food.Ordering.model.CartItem;
 import com.sam.Online.Food.Ordering.request.AddCartItemRequest;
+import org.springframework.stereotype.Service;
+
 
 public interface CartService {
 

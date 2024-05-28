@@ -9,9 +9,11 @@ import com.sam.Online.Food.Ordering.repository.CartRepository;
 import com.sam.Online.Food.Ordering.repository.CategoryRepository;
 import com.sam.Online.Food.Ordering.request.AddCartItemRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class CartServiceImp implements CartService{
 
 

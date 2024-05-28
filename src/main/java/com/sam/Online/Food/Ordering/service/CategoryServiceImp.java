@@ -4,10 +4,11 @@ import com.sam.Online.Food.Ordering.model.Category;
 import com.sam.Online.Food.Ordering.model.Restaurant;
 import com.sam.Online.Food.Ordering.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class CategoryServiceImp implements CategoryService{
 
     @Autowired
